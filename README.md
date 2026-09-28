@@ -33,3 +33,19 @@ Useful for outputs from CD, ATR and similar.
 10. Roughness measurement for pictures.py
 Script to analyze macroscopic roughness of microscopic images using local standard deviation.
 
+
+In the R folder:
+
+--- ggtree ---
+To create complex phylogenetic trees with labels, categorical and numerical factors.
+All info inside.
+
+
+
+To be cleaned up:
+
+11. Merge CSV files
+---- ggplot ----
+---- Column graphs ----
+---- Script to read chromatograms ----
+    
