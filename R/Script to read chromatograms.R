@@ -1,4 +1,6 @@
-# ---- install and load packages ----
+
+# ---- install and load packages --------------------------------------------------
+
 library(readr)
 library(dplyr)
 library(stringr)
@@ -9,18 +11,25 @@ library(ggtext)
 library(zoo)
 library(plotly)
 
-# ---- load data ----
 
-# 1. Setup
+# ---- load data --------------------------------------------------
+
+## ---- Setup --------------------------------------------------
+
 file_path <- "chromatogram3.csv"
 lines <- readLines(file_path)
 
-# 2. Groups identification
+
+## ---- Groups identification --------------------------------------------------
+
 is_sample_start <- str_detect(lines, "^[\" ]*#") & !str_detect(lines, "#Point")
 group_id <- cumsum(is_sample_start)
 is_any_header <- str_detect(lines, "^[\" ]*#")
 
-# 3. Mapping. Use it to change names to samples
+
+## ---- Mapping --------------------------------------------------
+
+# Use it to change names to samples
 mapping <- tibble(
   raw = c("EI TIC Scan No O2 -.d ",
           "EI TIC Scan No O2 +.d ",
@@ -62,8 +71,8 @@ mapping <- tibble(
 
 cat(paste0('"', unique(data_set$Sample), '"'), sep = ",\n") # to print raw values
 
-  
-# 4. Elaboration
+
+## ---- Elaboration --------------------------------------------------
 data_set <- tibble(lines = lines, group = group_id) %>%
   mutate(is_any_header = is_any_header) %>%
   group_by(group) %>%
@@ -78,11 +87,11 @@ data_set <- tibble(lines = lines, group = group_id) %>%
   filter(!str_detect(Sample, "TCC")) %>%
   select(Point, Time, Signal, Sample)
 
-# 5. Verify
+# Verify
 print(unique(data_set$Sample))
 
-# ---- baseline correction ----
 
+# ---- Baseline correction --------------------------------------------------
 
 window_size <- 200 #reduce value to increase correction
 
@@ -94,7 +103,7 @@ data_set <- data_set %>%
   ) %>%
   ungroup()
 
-#quick check
+# quick check
 ggplot(data_set, aes(x = Time)) +
   geom_line(aes(y = Signal, color = "Original"), alpha = 0.5) +
   geom_line(aes(y = Baseline, color = "Baseline"), linewidth = 1) +
@@ -102,7 +111,8 @@ ggplot(data_set, aes(x = Time)) +
   facet_wrap(~Sample) +
   ylim(-1000, 1000000)
 
-# ---- filter ----
+
+## ---- Filter --------------------------------------------------
 
 levels(data_set$Sample)
 
@@ -111,7 +121,8 @@ data_filtered <- data_set %>%
 
 print(unique(data_set$Sample)) #to check
 
-# ---- plotting ----
+
+## ---- Plotting --------------------------------------------------
 
 p <- ggplot(data_filtered, aes(x = Time, y = Corrected_Signal)) +
   geom_line(aes(color = Sample),
@@ -132,15 +143,14 @@ p <- ggplot(data_filtered, aes(x = Time, y = Corrected_Signal)) +
         ,plot.background = element_rect(fill = "transparent", color = NA)
   )
 
-# ---- plotly ----
-
+# Convert to ploty - web based interactive graphs
 p_interactive <- ggplotly(p)
 
-# 3. Salvalo come file HTML
+# Save
 htmlwidgets::saveWidget(p_interactive, "graph o-xylene.html")
 
 
-# ---- peak integration ----
+# ---- Peak integration --------------------------------------------------
 
 target_molecules <- tibble(
   Molecule = c("Tetradecane", "Methyl-6,8-dodecadienyl-ether", "3-methyl-pentadecane", "3-methyl-heptadecane", "1-octadecanol", "3-methyl-nonedecane", "2-methyl-7-nonadecene", "4-methyl-heneicosane"
@@ -172,7 +182,8 @@ integration_set <- data_set %>%
 
 print(integration_set, n = nrow(integration_set))
 
-# ---- table graph ----
+
+# ---- Table graph --------------------------------------------------
 
 # to check: unique(integration_set$Sample)
 
