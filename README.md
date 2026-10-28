@@ -5,36 +5,37 @@ List of scripts useful for various types of biotech / biochemistry jobs
 
 ## Python Scripts
 
-### Adjust Agilent report.py
+
+### 01_Adjust_Agilent_report.py
 Transforms the PDF Agilent report in a tidy and clean table in csv format.
 
-### Reduce number of FASTA from a list.py
+### 02_Reduce_number_of_FASTA_from_a_list.py
 Python program to reduce the number of sequences in a FASTA file by randomly selecting a specified number of sequences and saving them to a new FASTA file.
 
-### Remove [] from FASTA.py
+### 03_Remove_squared_brackets_from_FASTA.py
 Python program to remove square brackets from FASTA header names.
 
-### Remove breaks from FASTA.py
+### 04_Remove_breaks_from_FASTA.py
 Python program to remove line breaks from FASTA files.
 
-### Transform CSV to FASTA.py
+### 05_Transform_CSV_to_FASTA.py
 Python program to convert CSV to FASTA.
 
-### Convert DNA sequence to PROTEIN.py
+### 06_Convert_DNA_sequence_to_PROTEIN.py
 Python program to convert DNA sequences to protein.
 
-### Extract data from Fireseek JSON.py
+### 07_Extract_data_from_Fireseek_JSON.py
 Python program to extract tSeq and href subsets from JSON file coming from Foldseek.
 
-### Global - local alignment.py
+### 08_Global_local_alignment.py
 Python program to compute global and local alignment similarities between a query sequence and multiple target sequences.<br>
 It can also conduct a local alignment on specific residues
 
-### Merge txt files with same axis.py
+### 09_Merge_txt_files_with_same_axis.py
 Python program to merge multiple .txt files with two columns (X and Y) into a single tab-delimited .txt file.<br>
 Useful for outputs from CD, ATR and similar.
 
-### Roughness measurement for pictures.py
+### 10_Roughness_measurement_for_pictures.py
 Script to analyze macroscopic roughness of microscopic images using local standard deviation.
 
 <br>
@@ -49,7 +50,7 @@ All info inside.
 
 ## To be cleaned up:
 
-### Merge CSV files
+### 11_Merge_CSV_files.py
 ### ggplot
 ### Column graphs
 ### Script to read chromatograms
