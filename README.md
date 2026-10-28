@@ -39,7 +39,7 @@ Useful for outputs from CD, ATR and similar.
 Script to analyze macroscopic roughness of microscopic images using local standard deviation.<br>
 
 ### 11_Merge_CSV_files.py
-Python program to merge multiple .csv files with two columns (X and Y) into a single tab-delimited .csv file.
+Python program to merge multiple .csv into a single .xlsx file.
 
 <br>
 
