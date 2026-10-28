@@ -52,6 +52,5 @@ All info inside.
 
 ### 11_Merge_CSV_files.py
 ### ggplot
-### Column graphs
 ### Script to read chromatograms
 
