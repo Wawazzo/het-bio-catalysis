@@ -36,7 +36,10 @@ Python program to merge multiple .txt files with two columns (X and Y) into a si
 Useful for outputs from CD, ATR and similar.
 
 ### 10_Roughness_measurement_for_pictures.py
-Script to analyze macroscopic roughness of microscopic images using local standard deviation.
+Script to analyze macroscopic roughness of microscopic images using local standard deviation.<br>
+
+### 11_Merge_CSV_files.py
+Python program to merge multiple .csv files with two columns (X and Y) into a single tab-delimited .csv file.
 
 <br>
 
@@ -51,9 +54,3 @@ All info inside.
 
 ### 03_Read_chromatograms_and_ggploty
 To read chromatograms using <i>x</i>- and <i>y</i>- coordinates and plot them using ggploty, HTML, web-based and interactive.
-
-<br>
-
-## To be cleaned up:
-
-### 11_Merge_CSV_files.py
