@@ -42,15 +42,18 @@ Script to analyze macroscopic roughness of microscopic images using local standa
 
 ## R scripts
 
-### ggtree
+### 01_ggplot.R
+To create graphs (bars, lines, dots, ribbons, etc...).<br>
+
+### 02_ggtree.R
 To create complex phylogenetic trees with labels, categorical and numerical factors.<br>
 All info inside.
+
+### 03_Read_chromatograms_and_ggploty
+To read chromatograms using <i>x</i>- and <i>y</i>- coordinates and plot them using ggploty, HTML, web-based and interactive.
 
 <br>
 
 ## To be cleaned up:
 
 ### 11_Merge_CSV_files.py
-### ggplot
-### Script to read chromatograms
-
