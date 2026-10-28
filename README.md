@@ -29,11 +29,11 @@ Python program to extract tSeq and href subsets from JSON file coming from Folds
 
 ### 08_Global_local_alignment.py
 Python program to compute global and local alignment similarities between a query sequence and multiple target sequences.<br>
-It can also conduct a local alignment on specific residues
+<i>It can also conduct a local alignment on specific residues</i>
 
 ### 09_Merge_txt_files_with_same_axis.py
 Python program to merge multiple .txt files with two columns (X and Y) into a single tab-delimited .txt file.<br>
-Useful for outputs from CD, ATR and similar.
+<i>Useful for outputs from CD, ATR and similar.</i>
 
 ### 10_Roughness_measurement_for_pictures.py
 Script to analyze macroscopic roughness of microscopic images using local standard deviation.<br>
