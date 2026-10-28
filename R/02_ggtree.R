@@ -1,5 +1,5 @@
 
-########### guide ###########
+# ---- GUIDE --------------------------------------------------
 
 # This script allows you to create phylogenetic trees with visuals, colours and such.
 
@@ -23,25 +23,18 @@
 #   p -> q (add labels) -> s (add heatmap)
 
 
+# ---- INSTALL AND LOAD PACKAGES --------------------------------------------------
 
-########### install libraries/fonts ###########
-
-# To run only the first time:
-
-# if (!require("BiocManager", quietly = TRUE))
-# install.packages("BiocManager")
-# BiocManager::install("ggtree")
-# BiocManager::install("treeio")
-# BiocManager::install("ggtreeExtra")
-# install.packages("tidyverse")
-# install.packages("ape")
-# install.packages('extrafont')
-# install.packages("grid")
-# font_import()
-
-
-
-########### load libraries ###########
+if (!require("BiocManager", quietly = TRUE))
+install.packages("BiocManager")
+BiocManager::install("ggtree")
+BiocManager::install("treeio")
+BiocManager::install("ggtreeExtra")
+install.packages("tidyverse")
+install.packages("ape")
+install.packages('extrafont')
+install.packages("grid")
+font_import()
 
 library(tidyverse) # contains ggplot2 for data visualization and dplyr for data manipulation
 library(ggtree) # contains ggtree
@@ -52,8 +45,7 @@ library(extrafont) # for the use of different fonts from the standard ones
 library(grid) # for grid adjustment
 
 
-
-########### set-up ###########
+# ---- SET-UP --------------------------------------------------
 
 setwd("Y:/Andrea/enzymes data/UMG_SP_2/new urethanases") # set directory
 
@@ -72,17 +64,15 @@ tree <- read.tree("tree.dnd") # call tree file
 #+ xlim(0, 5.5) #sets limit for x and y axes
 
 
+# ---- DEFINE TREE TYPE --------------------------------------------------
 
-########### definition of tree types ###########
-
-### tree with only branches ###
+# tree with only branches
 p <- ggtree(tree,
             size = 0.2, #tickness of the branches
             layout = "circular", #layout type
             branch.length='none') # more layouts at https://yulab-smu.top/treedata-book/chapter4.html figure 4.2
 
-
-### tree with labels ###
+# tree with labels
 q <- p +
   geom_tiplab(offset=0.2, #offset of the labels
               family = "Montserrat", #font type
@@ -90,9 +80,7 @@ q <- p +
               fontface="plain") # font face (bold, italic...)
 # more at https://rdrr.io/github/GuangchuangYu/ggtree/man/geom_tiplab.html
 
-
-### tree with labels + one highlighted ###
-### to add more highlighted labels, just add another geom_tiplab ###
+# tree with labels + one highlighted. To add more highlighted labels, just add another geom_tiplab
 q2 <- p +
   geom_tiplab(data = subset(p$data, !label %in% c("UMG-SP-1", "UMG-SP-2", "UMG-SP-3", "Urethanase-1", "Urethanase-2", "Urethanase-3", "Urethanase-4", "Urethanase-5", "Urethanase-6", "Urethanase-7", "Urethanase-8","met","Tm", "pQR3137", "pQR3138", "pQR3139", "pQR3140", "pQR3141", "pQR3142", "pQR3143", "pQR3144", "pQR3145", "AbPURase")), # select the labels you want to highlight
               offset=0.2, #offset of the labels
@@ -110,8 +98,7 @@ q2 <- p +
     size = 1.5, # font size of highlighted labels
     fontface = "bold")
 
-
-### tree with dots ###
+# tree with dots
 r <- q %<+% dots +
     geom_tippoint(aes(color = bababa), # select column in the CSV for dots and select size
                   size = 6) +  # change size of the dots
@@ -121,8 +108,7 @@ r <- q %<+% dots +
     plot.margin = margin(5, 5, 5, 5)) + # margins size
   scale_color_manual(values=cols, name = "class") + xlim(0, 16) # pick title of the legend
 
-
-### tree with a heatmap ###
+# tree with a heatmap
 s <- gheatmap(r, heatmap,
               offset = 3, # change offset of the heatmap
               width = 0.06, # width of heatmap
@@ -144,9 +130,7 @@ s <- gheatmap(r, heatmap,
         legend.title = element_text(family = "Montserrat", face="bold.italic")) # legend title font
 # more info at https://rdrr.io/github/GuangchuangYu/ggtree/man/gheatmap.html
 
-
-### tree with a second heatmap ###
-### to add more heatmaps, replicate this  script a second/third time (s3, s4, etc...) ###
+# tree with a second heatmap. To add more heatmaps, replicate this  script a second/third time (s3, s4, etc...)
 s_temp <- s + ggnewscale::new_scale_fill() #Need to load more than one heatmap
 s2 <- gheatmap(s_temp, heatmap2,
                offset = 5,  # change offset of the heatmap. Set > than the offset in s
@@ -167,10 +151,20 @@ s2 <- gheatmap(s_temp, heatmap2,
         legend.title = element_text(family = "Montserrat", face = "bold.italic")) # legend title font
 
 
-
-########### save ###########
+# ---- SAVE --------------------------------------------------
 # This is the command to save the plot.
 # Can adjust name of the file, the plot, the path and so on and so forth
 
-sav <- ggsave("tree.png", plot = q, device = NULL, path = NULL, scale = 1, width = NA,height = NA, units = c("in", "cm", "mm", "px"), dpi = 600, limitsize = TRUE, bg = NULL,create.dir = FALSE,)
+sav <- ggsave("tree.png",
+              plot = q,
+              device = NULL,
+              path = NULL,
+              scale = 1,
+              width = NA,
+              height = NA,
+              units = c("in", "cm", "mm", "px"),
+              dpi = 600,
+              limitsize = TRUE,
+              bg = NULL,
+              create.dir = FALSE,)
 
